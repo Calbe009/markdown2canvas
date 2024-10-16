@@ -48,13 +48,18 @@ def get_canvas_key_url():
     return locals()['API_KEY'],locals()['API_URL']
 
 
-def make_canvas_api_obj(url=None):
+def make_canvas_api_obj(url=None, token=None):
     """
     - reads the key from a python file, path to which must be in environment variable CANVAS_CREDENTIAL_FILE.
     - optionally, pass in a url to use, in case you don't want the default one you put in your CANVAS_CREDENTIAL_FILE.
+    - optionally, pass in a token to use instead of reading from the credential file.
     """
 
-    key, default_url = get_canvas_key_url()
+    if token is None:
+        key, default_url = get_canvas_key_url()
+    else:
+        key = token
+        _, default_url = get_canvas_key_url()
 
     if not url:
         url = default_url
