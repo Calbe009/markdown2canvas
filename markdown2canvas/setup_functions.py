@@ -19,7 +19,7 @@ import canvasapi
 
 
 
-def get_canvas_key_url():
+def get_canvas_key_url(key, url):
     """
     reads a file using an environment variable, namely the file specified in `CANVAS_CREDENTIAL_FILE`.
 
@@ -54,7 +54,7 @@ def make_canvas_api_obj(url=None, token=None):
     - optionally, pass in a url to use, in case you don't want the default one you put in your CANVAS_CREDENTIAL_FILE.
     - optionally, pass in a token to use instead of reading from the credential file.
     """
-
+    """
     if token is None:
         key, default_url = get_canvas_key_url()
     else:
@@ -63,8 +63,8 @@ def make_canvas_api_obj(url=None, token=None):
 
     if not url:
         url = default_url
-
-    return canvasapi.Canvas(url, key)
+    """
+    return canvasapi.Canvas(url, token)
 
 
 
